@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import ProductCard from "./ProductCard";
+import NavBar from "./NavBar";
 
 const ProductsContainer = () => {
     // Logic gies here
@@ -8,10 +9,10 @@ const ProductsContainer = () => {
     
     // useEffect -> Queries data as we load
     useEffect(() => {
-        fetch("https://api.escuelajs.co/api/v1/products").then((response)=>{
+        fetch("https://dummyjson.com/products").then((response)=>{
             response.json().then((resp)=>{
                 console.log(resp)
-                setProducts(resp)
+                setProducts(resp.products)
             })
         }).catch((err)=>{
             console.log(err)
@@ -21,18 +22,10 @@ const ProductsContainer = () => {
 
     return (
         <>
+        <NavBar/>
         <div className="container">
             <h1>BUY NOW</h1>
             <div className="row justify-content-around">
-                {/* <div className="col-md-3">
-                   <ProductCard />
-                </div>
-                <div className="col-md-3">
-                   <ProductCard />
-                </div>
-                <div className="col-md-3">
-                   <ProductCard />
-                </div> */}
                 {
                     products.map((prod, index)=>{
                         return(
